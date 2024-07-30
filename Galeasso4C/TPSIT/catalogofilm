@@ -1,0 +1,9 @@
+catalogo di 3 film diversi tra loro
+(titolo, genere, anno, regista...)
+ogni film --> titolo, ALMENO un regista, genere, lista di attori (può essere vuota!)
+insieme dei film --> "catalogo"
+id univoco per ogni film
+indicazione di originalità del supporto (originale si/no)
+default --> copie originali
+formato del film (vhs o dvd)
+opzionale --> voto

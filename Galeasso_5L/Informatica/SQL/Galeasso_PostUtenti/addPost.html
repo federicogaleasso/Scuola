@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Post</title>
+</head>
+<body>
+    <div>
+        <a href="./index.html">Home</a>
+        <a href="./addPost.html">Aggiungi post</a>
+        <a href="./addUser.html">Aggiungi utente</a>
+        <a href="./showDB.php">Visualizza DB</a>
+    </div>
+
+    <div>
+        <div>
+            <form class="form" action="./addPost.php" method="POST">
+				</br>
+                <span><strong>Inserisci Post</strong></span>                
+                <div>
+                    <input type="text" name="id_utente" placeholder="ID Utente">
+                    <input type="text" name="titolo_post" placeholder="Titolo">
+                    <input type="text" name="contenuto_post" placeholder="Contenuto">
+                </div>
+                <input type="submit" value="Aggiungi">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

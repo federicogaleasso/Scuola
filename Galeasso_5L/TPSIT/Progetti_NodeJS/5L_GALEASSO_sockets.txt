@@ -1,0 +1,56 @@
+*Socket
+
+- A cosa servono i socket?
+I socket servono per far comunicare tra loro due host. Non hanno bisogno del browser (non usano quindi http/https). A differenza, i websocket hanno bisogno del browser (utilizzano http/https).
+Ad esempio il bluethoot usa i socket.
+
+- Che protocolli si usano?
+I protocolli utilizzati sono TCP e UDP. TCP è orientato alla connessione (prima di trasmettere il pacchetto deve instaurare una connessione con il server). Se si utilizza UDP non c'è il server ed è un protocollo non orientato alla connessione.
+Altra differenza tra TCP e UDP: se si perde un pacchetto, TCP lo ritrasmette, UDP no. Esempio: in streaming se si perdono dei pacchetti non è un problema e quindi si usa UDP, in chat se si perde un pacchetto è un problema, perchè vuol dire perdere ad esempio un carattere. In questo caso si sua quindi si usa TCP.
+
+Per usare i socket --> npm install net (con net si ha la possibilità di creare server, client e utilizzare il protocollo UDP)
+
+*WebSocket
+
+- A cosa servono i websocket?
+I websocket vengono utilizzati per i giochi online, aste (Ebay), chat, live sport, social. Ad esempio, se arriva un messaggio su instagram, non c'è bisogno di aggiornare la pagina.
+Se non si vogliono usare i websocket, si usa il tag refresh, che ogni tot secondi aggiorna automaticamente la pagina.
+Socket.IO è un protocollo ed è nativo.
+npm install socket.io --> Socket.io non ha la funzione listen, quindi deve essere usato con http o express.
+
+- Perché si usano?
+Il client contatta il server (deve utilizzare il websocket), il server accetta la connessione (orientato alla connessione), si instaura la connessione, non c'è più bisogno di aggiornare la pagina.
+
+Codice socket:
+//Federico Galeasso 5L 17/01/2024 - Socket
+
+//Import del modulo net
+const net = require("net")
+
+//Server
+
+//Creazione server, in ascolto sulla porta 4000 all'indirizzo 172.10.196.244. La callback ha solo 1 parametro: il socket.
+//La funzione viene richiamata quando il client la richiama
+net.createServer((socket)=>{
+	//Per scrivere
+	socket.write("CIAOOO!")
+
+	//on --> nativo di Node.js, serve per gestire gli eventi (esempio: onClick in React). Ha due parametri: "data" e callback
+	socket.on("data",(msg)=>{
+		console.log(msg)
+		console.log(socket.remoteAddress + " " + msg.toString())
+	})
+
+}).listen(4000,"172.10.196.244")
+
+//Client
+
+//Per il client si usa connect. 3 parametri: porta, indirizzo ip, callback.
+const mioSocket = net.connect(4000, "127.0.0.1", ()=>{
+	console.log("CLIENT COLLEGATO")
+})
+
+mioSocket.write("CIAOOO!")
+mioSocket.on("data",(msg)=>{
+
+})

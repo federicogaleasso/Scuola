@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Galeasso - Gioco Phas3r</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        var config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: {
+                        y: 300
+                    },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        var player;
+        var stars;
+        var platforms;
+        var cursors;
+        var score = 1;
+        var life = 3;
+        var scoreText;
+        var lifeText;
+        var gameOverText;
+        var png1;
+        var fire;
+
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            this.load.image('sky', 'assets/Background.png');
+            this.load.image('ground', 'assets/IndustrialTile.png');
+            this.load.image('ground2', 'assets/IndustrialTile_25.png');
+            this.load.image('star', 'assets/star.png');
+            this.load.image('life', 'assets/life.png');
+            this.load.image('pngitem', 'assets/pngitem.png');
+            this.load.image('zombie', 'assets/Run10.png');
+            this.load.image('backgroundL2', 'assets/backgroundL2.png');
+            this.load.image('png1', 'assets/png1.png');
+            this.load.image('zombie2', 'assets/zombie2.png');
+            this.load.image('fire', 'assets/fire.png');
+            this.load.image('portal', 'assets/index(1).png');
+            this.load.spritesheet('dude', 'assets/dude.png', {
+                frameWidth: 32,
+                frameHeight: 48
+            });
+        }
+
+        function create() {
+            background = this.add.image(400, 280, 'sky').setScale(1.8);
+            pngitem = this.add.image(400, 250, 'pngitem').setScale(0.4).setDepth(1);
+            backgroundL2 = this.add.image(400, 280, 'backgroundL2').setScale(1.8).setVisible(false);
+            png1 = this.physics.add.staticGroup();
+            png1.create(100, 220, 'png1');
+            png1.create(640, 400, 'png1');
+            png1.create(800, 250, 'png1');
+
+
+            platforms = this.physics.add.staticGroup();
+            portal = this.physics.add.staticGroup({
+                key: "portal",
+                setXY: {
+                    x: 1,
+                    y: 1,
+                },
+                setScale: {
+                    x: 1,
+                }
+            })
+            this.physics.add.collider(player, zombie, () => {
+                player.setPosition();
+            });
+            portal2 = this.physics.add.staticGroup({
+                key: "portal",
+                setXY: {
+                    x: 1,
+                    y: 1,
+                },
+                setScale: {
+                    x: 1,
+                }
+            })
+
+            platforms.create(400, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(445, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(490, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(535, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(580, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(625, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(670, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(715, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(760, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(805, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(355, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(310, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(265, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(220, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(175, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(130, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(85, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(40, 578, 'ground2').setScale(1.4).refreshBody();
+            platforms.create(-5, 578, 'ground2').setScale(1.4).refreshBody();
+
+
+            // platforms.create(600, 400, 'ground');
+            // platforms.create(630, 400, 'ground');
+            // platforms.create(660, 400, 'ground');
+            // platforms.create(690, 400, 'ground');
+            // platforms.create(720, 400, 'ground');
+            // platforms.create(750, 400, 'ground');
+            // platforms.create(780, 400, 'ground');
+            // platforms.create(570, 400, 'ground');
+            // platforms.create(540, 400, 'ground');
+            // platforms.create(510, 400, 'ground');
+            // platforms.create(50, 250, 'ground');
+
+            // platforms.create(80, 250, 'ground');
+            // platforms.create(20, 250, 'ground');
+            // platforms.create(110, 250, 'ground');
+            // platforms.create(140, 250, 'ground');
+            // platforms.create(170, 250, 'ground');
+            // platforms.create(200, 250, 'ground');
+            // platforms.create(230, 250, 'ground');
+            // platforms.create(750, 220, 'ground');
+
+            // platforms.create(720, 220, 'ground');
+            // platforms.create(690, 220, 'ground');
+            // platforms.create(780, 220, 'ground');
+            // platforms.create(750, 220, 'ground');
+
+            player = this.physics.add.sprite(300, 450, 'dude').setScale(1.4);
+            zombie = this.physics.add.sprite(100, 450, 'zombie').setScale(0.25);
+            // this.tweens.add({
+            //     targets: 'zombie',
+            //     props: {
+            //         x: {
+            //             value: 700,
+            //             duration: 7000,
+            //             flipX: true
+            //         },
+            //         ease: 'Linear',
+            //         yoyo: true,
+            //         repeat: -1
+            //     }
+            // });
+            fire = this.physics.add.sprite(600, 300, 'fire').setScale(0.17).setVisible(false);
+            //zombie2 = this.physics.add.sprite(750, 100, 'zombie2').setScale(0.25).setVisible(false);
+
+            player.setBounce(0.2);
+            player.setCollideWorldBounds(true);
+
+            zombie.setBounce(0.2);
+            zombie.setCollideWorldBounds(true);
+
+            fire.setBounce(0.2);
+            fire.setCollideWorldBounds(true);
+
+            // zombie2.setBounce(0.2);
+            // zombie2.setCollideWorldBounds(true);
+
+            this.anims.create({
+                key: 'left',
+                frames: this.anims.generateFrameNumbers('dude', {
+                    start: 0,
+                    end: 3
+                }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'turn',
+                frames: [{
+                    key: 'dude',
+                    frame: 4
+                }],
+                frameRate: 20
+            });
+
+            this.anims.create({
+                key: 'right',
+                frames: this.anims.generateFrameNumbers('dude', {
+                    start: 5,
+                    end: 8
+                }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            cursors = this.input.keyboard.createCursorKeys();
+
+            stars = this.physics.add.group({
+                key: 'star',
+                repeat: 0,
+                setXY: {
+                    x: 70,
+                    y: 0,
+                    stepX: 70
+                }
+            });
+
+            stars.children.iterate(function(child) {
+
+                child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+            });
+
+            scoreText = this.add.text(16, 16, 'Level 1', {
+                fontSize: '32px',
+                fill: '#000'
+            });
+
+            startText = this.add.text(170, 350, 'Press any key to start...', {
+                fontSize: '32px',
+                fill: '#000'
+            });
+
+            lifeText = this.add.text(650, 16, 'Life: 3', {
+                fontSize: '32px',
+                fill: '#000'
+            });
+
+            gameOverText = this.add.text(100, 60, 'GAME OVER!', {
+                fontSize: '100px',
+                fill: '#fc0303'
+            });
+
+            gameOverText.setVisible(false);
+
+            this.physics.add.collider(player, platforms);
+            this.physics.add.collider(stars, platforms);
+            this.physics.add.collider(fire, platforms);
+            this.physics.add.collider(zombie, platforms);
+            //this.physics.add.collider(zombie2, platforms);
+            this.physics.add.collider(player, png1);
+            this.physics.add.collider(stars, png1);
+            this.physics.add.collider(fire, png1);
+            this.physics.add.collider(zombie, png1);
+            //this.physics.add.collider(player, star);
+            //this.physics.add.collider(zombie2, png1);
+            this.physics.add.collider(player, zombie, () => {
+                player.setVisible(false);
+                zombie.setVisible(false);
+                player.setPosition(300, 450);
+                zombie.setPosition(100, 450);
+                player.setVisible(true);
+                zombie.setVisible(true);
+                life -= 1;
+                lifeText.setText('Life: ' + life);
+                if (life == 0) {
+                    life = 4;
+                    player.setVisible(false);
+                    zombie.setVisible(false);
+                    gameOverText.setVisible(true);
+                    pngitem.setVisible(true);
+                    startText.setVisible(true);
+                }
+            })
+
+            function collectStar(player, star) {
+                //star.disableBody(true, true);
+
+                score += 1;
+                scoreText.setText('Level ' + score);
+                if (score == 2) {
+                    star.setVisible(true);
+                    background.setVisible(false);
+                    player.setPosition(300, 405);
+                    zombie.setVisible(false);
+                    //star.setVisible(true);
+                    //png1.setVisible(false);
+                    backgroundL2.setVisible(true);
+                    zombie.setVisible(true);
+                    zombie.setPosition(100, 450);
+                    fire.setVisible(true);
+                    this.physics.add.collider(player, fire, () => {
+                        player.setVisible(false);
+                        zombie.setVisible(false);
+                        fire.setVisible(false);
+                        player.setPosition(300, 450);
+                        zombie.setPosition(100, 450);
+                        fire.setPosition(600, 300);
+                        player.setVisible(true);
+                        zombie.setVisible(true);
+                        fire.setVisible(true);
+                        life -= 1;
+                        lifeText.setText('Life: ' + life);
+                        if (life == 0) {
+                            life = 4;
+                            player.setVisible(false);
+                            zombie.setVisible(false);
+                            fire.setVisible(false);
+                            gameOverText.setVisible(true);
+                            pngitem.setVisible(true);
+                            startText.setVisible(true);
+                        }
+                    })
+                }
+            }
+
+            this.physics.add.overlap(player, stars, collectStar, null, this);
+        }
+
+        function update() {
+            if (cursors.left.isDown) {
+                player.setVelocityX(-160);
+
+                player.anims.play('left', true);
+            } else if (cursors.right.isDown) {
+                player.setVelocityX(160);
+
+                player.anims.play('right', true);
+            } else {
+                player.setVelocityX(0);
+
+                player.anims.play('turn');
+            }
+
+            if (cursors.up.isDown && player.body.touching.down) {
+                player.setVelocityY(-330);
+            }
+            if (cursors.space.isDown || cursors.right.isDown || cursors.left.isDown || cursors.up.isDown || cursors.down.isDown) {
+                pngitem.setVisible(false);
+                startText.setVisible(false);
+                gameOverText.setVisible(false);
+                zombie.setVelocityX(150);
+                fire.setVelocityX(0);
+            }
+        }
+
+
+
+        // function Life(player, zombie) {
+        //     life -= 1;
+        //     lifeText.setText('Life: ' + life);
+        // }
+    </script>
+
+</body>
+
+</html>

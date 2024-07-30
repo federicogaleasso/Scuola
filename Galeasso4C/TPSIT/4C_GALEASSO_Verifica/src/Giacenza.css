@@ -1,0 +1,28 @@
+/* Inizio bottone */
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#pulsante {
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px Arial, Helvetica, sans-serif;
+    color: #fff;
+    padding: 20px 50px;
+    border: solid 1px #0095cd;
+    background: #0095cd;
+    border-radius: 30px;
+}
+
+#pulsante:hover {
+    background: #fff;
+    border: solid 1px #0095cd;
+    color: #0095cd;
+    transition: 1s;
+}

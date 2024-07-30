@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeasso Appunti JS</title>
+    <script>
+        // alert("Benvenuto!");
+
+        const saluta = () => {
+            let message = "Ciao, " + document.querySelector("#nome").value + " " + document.querySelector("#cognome").value;
+
+            // L'istruzione precedente equivale alla seguente
+            // Da notare la differenza nel parametro passato alla funzione    
+            // let message = "Ciao, " + document.getElementById("nome").value + " " + document.getElementById("cognome").value;
+
+            alert(message);
+            document.getElementById("saluta_testo").innerHTML = message;
+        }
+
+        const splittaDigit = () => {
+            //console.log("splittaDigit()");
+            let valoreValue = document.querySelector("#valore").value;
+            console.log("valoreValue=" + valoreValue);
+
+            let cent = 0;
+            let decine = 0;
+            let unita = 0;
+
+            cent = Math.trunc(valoreValue / 100);
+            valoreValue -= cent * 100;
+            decine = Math.trunc(valoreValue / 10);
+            unita = valoreValue % 10;
+
+            console.log("centinaia: " + cent + ":");
+            console.log("decine: " + decine + ":");
+            console.log("unità: " + unita + ":");
+
+            document.querySelector("#cent").innerHTML = cent;
+            document.querySelector("#decine").innerHTML = decine;
+            document.querySelector("#unita").innerHTML = unita;
+        }
+
+        const suddividiSecondi = () => {
+            //console.log("suddividiSecondi()");
+            let ValoreValue = document.querySelector("#secondiUtente").value;
+            console.log("ValoreValue" + ValoreValue);
+            let Giorni = 0;
+            let Ore = 0;
+            let Minuti = 0;
+            let Secondi = 0;
+            Giorni = Math.trunc(ValoreValue / 86400);
+            Ore = Math.trunc((ValoreValue % 86400) / 3600);
+            Minuti = Math.trunc(((ValoreValue % 86400) % 3600) / 60);
+            Secondi = Math.trunc(((ValoreValue % 86400) % 3600) % 60);
+            document.querySelector("#gg").innerHTML = Giorni;
+            document.querySelector("#hh").innerHTML = Ore;
+            document.querySelector("#mm").innerHTML = Minuti;
+            document.querySelector("#ss").innerHTML = Secondi;
+        }
+        let risultato = 0
+        const calcolaSecondi = () => {
+            //console.log("calcolaSecondi()");
+            let giorni = document.querySelector("#giorni").value;
+            let ore = document.querySelector("#ore").value;
+            let minuti = document.querySelector("#minuti").value;
+            let secondi = document.querySelector("#secondi").value;
+            giorni = giorni * 86400;
+            ore = ore * 3600;
+            minuti = minuti * 60;
+            document.querySelector("#tempo_in_sec").innerHTML = risultato;
+        }
+
+        let uni = 0
+        let dec = 0
+
+        const piuSoldi = () => {
+
+            if (dec == 9 && uni == 8) {
+                alert("sei arrivato al massimo")
+                let unita = document.getElementById('uni').style.backgroundColor = "grey";
+                let decine = document.getElementById('dec').style.backgroundColor = "grey";
+            } else {
+                let unita = document.getElementById('uni').style.backgroundColor = "yellow";
+                let decine = document.getElementById('dec').style.backgroundColor = "yellow";
+                if (uni < 8) {
+                    uni = uni + 2
+                } else {
+                    uni = 0
+                    dec = dec + 1
+                }
+            }
+            document.querySelector("#dec").innerHTML = dec;
+            document.querySelector("#uni").innerHTML = uni;
+        }
+
+        const menoSoldi = () => {
+            if (dec == 0 && uni == 0) {
+                alert("sei arrivato al minimo")
+                let decine = document.getElementById('dec').style.backgroundColor = "grey";
+                let unita = document.getElementById('uni').style.backgroundColor = "grey";
+            } else {
+                let decine = document.getElementById('dec').style.backgroundColor = "yellow";
+                let unita = document.getElementById('uni').style.backgroundColor = "yellow";
+                if (uni > 0) {
+                    uni = uni - 2
+                } else {
+                    uni = 8
+                    dec = dec - 1
+                }
+            }
+            document.querySelector("#dec").innerHTML = dec;
+            document.querySelector("#uni").innerHTML = uni;
+        }
+
+        var foto = new Array();
+
+        foto[0] = "img/Cane.jpg";
+        foto[1] = "img/Capra.jpg";
+        foto[2] = "img/Gabbiano.jpg";
+
+        var i = 0;
+
+        function NuovaFoto() {
+            if (i == 2)
+                document.getElementById('Freccia').style.backgroundColor = "red";
+            if (i == 2)
+                alert("Non ci sono più foto")
+            else
+                i++;
+            document.getElementById("img").src = foto[i];
+            if (i == 0 || i == 1)
+                document.getElementById('Freccia').style.backgroundColor = "yellow";
+            if (i != 0)
+                document.getElementById('Freccia1').style.backgroundColor = "yellow";
+
+            var str = foto[i].split('/');
+            document.getElementById("titolo").innerHTML = str[1];
+        }
+
+        function VecchiaFoto() {
+            if (i == 0)
+                document.getElementById('Freccia1').style.backgroundColor = "red";
+            if (i == 0)
+                alert("Non ci sono più foto")
+            else
+                i--;
+            if (i != 0)
+                document.getElementById('Freccia').style.backgroundColor = "yelllow";
+            if (i != 0)
+                document.getElementById('Freccia1').style.backgroundColor = "yellow";
+            var str = foto[i].split('/');
+            document.getElementById("img").src = foto[i];
+        }
+    </script>
+    <style>
+        .sfondo {
+            background-color: royalblue;
+        }
+        
+        .numeri {
+            display: flex;
+        }
+        
+        #decine {
+            margin-right: 15px;
+            background-color: red;
+        }
+        
+        #unita {
+            margin-right: 15px;
+            background-color: violet;
+        }
+        
+        #cent {
+            margin-right: 15px;
+            background-color: yellow;
+        }
+        
+        #Soldi {
+            display: flex;
+        }
+        
+        #img {
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class="sfondo">
+    <div class="container">
+        <h1>Esempio js</h1>
+        <p>Esempio di cattura input utente e visualizzazione in un alert ed in un div già presente</p>
+
+        <input type="text" name="" id="nome" placeholder="Nome">
+        <input type="text" name="" id="cognome" placeholder="Cognome">
+        <input type="button" value="Clicca qui" onclick="saluta()">
+        <div id="saluta_testo"></div>
+        <div>
+            <h3>Splitta div</h3>
+            <p>Suddividere le cifre di un numero in unità e decine</p>
+            <input type="text" name="" id="valore" placeholder="Valore">
+            <input type="button" value="Splitta digit!" onclick="splittaDigit()">
+            <div class="numeri">
+                <div id="cent"></div>
+                <div id="decine"></div>
+                <div id="unita"></div>
+            </div>
+        </div>
+        <div>
+            <h3>Tempo[da secondi]</h3>
+            <p>Suddividere i secondi in GG-HH-MM-SS</p>
+            <input type="text" value="4210" id="secondiUtente" placeholder="valore">
+            <input type="button" value="Suddividi secondi" onclick="suddividiSecondi()">
+            <div id="gg"></div>
+            <div id="hh"></div>
+            <div id="mm"></div>
+            <div id="ss"></div>
+        </div>
+        <div>
+            <h3>Tempo[in secondi]</h3>
+            <p>Calcolo i secondi totali</p>
+            <input type="text" value="2" id="giorni" placeholder="valore">
+            <input type="text" value="13" id="ore" placeholder="valore">
+            <input type="text" value="3" id="minuti" placeholder="valore">
+            <input type="text" value="56" id="secondi" placeholder="valore">
+            <input type="button" value="Calcola secondi" onclick="calcolaSecondi()">
+            <div id="tempo_in_sec"></div>
+        </div>
+        <div>
+            <h3>Correzione Verifica</h3>
+            <p>Aggiungi o togli i soldi</p>
+            <input type="button" value="Più Soldi" onclick="piuSoldi()">
+            <input type="button" value="Meno Soldi" onclick="menoSoldi()">
+            <div id="Soldi">
+                <div class="Monete centro" id="dec">0</div>
+                <div class="Monete centro" id="uni">0</div>
+            </div>
+        </div>
+        <div class="row tit justify-content-center align-items-center">
+            <h2>Cambio Immagini</h2>
+        </div>
+        <div class="row justify-content-around align-items-center">
+            <input type="button" value="Nuova Foto" onclick="NuovaFoto()" id="Freccia">
+            <div class="col-4 d-flex justify-content-center align-items-center"><img src="img/cane.jpg" id="img"></div>
+            <input type="button" value="Vecchia Foto" onclick="VecchiaFoto()" id="Freccia1">
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

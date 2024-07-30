@@ -1,0 +1,32 @@
+-- Galeasso Federico 5L 23/2/2024 - DDL Merendine SQL
+
+DROP DATABASE Merendine;
+CREATE DATABASE IF NOT EXISTS Merendine;
+USE Merendine;
+
+CREATE TABLE IF NOT EXISTS Merende (
+	CodMerenda VARCHAR(5) NOT NULL PRIMARY KEY,
+	NomeMerenda VARCHAR(25) NOT NULL,
+	Prezzo FLOAT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Scuole (
+	CodScuola VARCHAR(5) NOT NULL PRIMARY KEY,
+	NomeScuola VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Macchinette (
+	CodMacchinetta VARCHAR(5) NOT NULL PRIMARY KEY,
+	TipoMacchinetta VARCHAR(20) NOT NULL,
+	CodScuola VARCHAR(5) NOT NULL,
+	FOREIGN KEY(CodScuola) REFERENCES Scuole(CodScuola)
+);
+
+CREATE TABLE IF NOT EXISTS Posizioni (
+	CodPos VARCHAR(5) NOT NULL PRIMARY KEY,
+	QtaMerendine INT NOT NULL,
+	CodMerenda VARCHAR(5) NOT NULL,
+	CodMacchinetta VARCHAR(5) NOT NULL,
+	FOREIGN KEY(CodMerenda) REFERENCES Merende(CodMerenda),
+	FOREIGN KEY(CodMacchinetta) REFERENCES Macchinette(CodMacchinetta)
+);
