@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeasso Gioco IMG JS</title>
+    <style>
+        .ds {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+        }
+        
+        .index {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 75vh;
+        }
+    </style>
+    <script>
+        let vettore = new Array();
+
+        foto[0] = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Adam_Ondra_by_PAVEL_BLAZEK_2.jpg/200px-Adam_Ondra_by_PAVEL_BLAZEK_2.jpg";
+        foto[1] = "https://www.lasportiva.com/media/mageplaza/blog/auth/a/l/alex-honnold-matteo-pavana3_2.jpg";
+        foto[2] = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Stefano_Ghisolfi_Climbing_WCh_2018.jpg/260px-Stefano_Ghisolfi_Climbing_WCh_2018.jpg";
+
+        const sinistra = () => {
+            document.querySelector("#dx").style.backgroundColor = "white"
+            if (contatore === 0) {
+                alert("LIMITE MASSIMO!!!")
+                document.querySelector("#sx").style.backgroundColor = "red"
+            } else {
+                if (contatore == 0) {
+                    contatore = vettore.length - 1;
+                } else {
+                    contatore--;
+                }
+                document.getElementById("image").src = vettore[contatore];
+            }
+        }
+
+        let contatore = 0;
+        const destra = () => {
+            document.querySelector("#sx").style.backgroundColor = "white"
+            if (contatore === 2) {
+                alert("LIMITE MASSIMO!!!")
+                document.querySelector("#dx").style.backgroundColor = "red"
+            } else {
+                if (contatore < vettore.length - 1) {
+                    contatore++
+                } else {
+                    contatore = 0
+                }
+                document.getElementById("image").src = vettore[contatore];
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="index">
+        <div>
+            <img src="img/sinistra.png" class="ds" id="sx" onclick="sinistra()" alt="">
+        </div>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Adam_Ondra_by_PAVEL_BLAZEK_2.jpg/200px-Adam_Ondra_by_PAVEL_BLAZEK_2.jpg" id="image">
+        </div>
+        <div>
+            <img src="img/destra.png" class="ds" id="dx" onclick="destra()" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

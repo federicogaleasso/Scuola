@@ -1,0 +1,59 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    height: 7vh;
+    align-items: center;
+}
+
+.link{
+    display: flex;
+    margin: 5vh;
+}
+
+.img{
+    width: 11vh;
+    margin-left: 5vh;
+}
+
+.div-link2{
+    margin-right: 2vh;
+    margin-left: 2vh;
+}
+
+.div-link3{
+    margin-right: 2vh;
+}
+
+.link1,
+.link2,
+.link3,
+.link4{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+}
+
+.link1:hover{
+    text-decoration: none;
+    color:rgb(255, 0, 0);
+    transition: 1s;
+}
+
+.link2:hover{
+    text-decoration: none;
+    color:rgb(76, 0, 255);
+    transition: 1s;
+}
+
+.link3:hover{
+    text-decoration: none;
+    color:rgb(0, 255, 255);
+    transition: 1s;
+}
+
+.link4:hover{
+    text-decoration: none;
+    color:rgb(51, 255, 0);
+    transition: 1s;
+}

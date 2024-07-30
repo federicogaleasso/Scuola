@@ -1,0 +1,17 @@
+const visualizzaBase= async() =>{
+    const client = new MongoClient(url);
+    await client.connect()
+    .then(()=>{console.log('Connected successfully to server')})
+    .catch((error)=>{console.log(error)});
+    //ricorda che tutte le funzioni find, insertOne, delete, update etc ritornano una promise
+    let collection = client.db("pippo").collection("alunni");
+    let miaColl=collection.find({nome:"giordano"}).toArray();
+    miaColl.then((data)=>{
+        data.map((elemento)=>{
+            console.log(elemento.nome)
+        })
+    })
+    .finally(()=>{
+        client.close()
+    })
+}

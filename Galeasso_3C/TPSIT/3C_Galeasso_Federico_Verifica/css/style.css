@@ -1,0 +1,26 @@
+/* .bordi {
+    border: 1px solid black;
+} */
+
+.rowsotto {
+    margin-top: 50px;
+}
+
+.divsotto1 {
+    color: white;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.divsotto2 {
+    color: white;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+}
+
+.rowsopra {
+    margin-top: 100px;
+}

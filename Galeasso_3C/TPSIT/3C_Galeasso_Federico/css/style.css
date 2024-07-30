@@ -1,0 +1,67 @@
+body {
+    background-image: url(https://static.ohga.it/wp-content/uploads/sites/24/2018/12/istock-637816996.jpg);
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.bordi {
+    border: 1px solid white;
+}
+
+.titolo {
+    color: white;
+    font-size: 50px;
+}
+
+.form {
+    height: 50vh;
+    background-color: white;
+    border: 15px solid lightblue;
+}
+
+.social1 {
+    background-color: blue;
+    height: 30px;
+    color: white;
+}
+
+.social2 {
+    background-color: lightblue;
+    height: 30px;
+    color: white;
+}
+
+.social3 {
+    background-color: red;
+    height: 30px;
+    color: white;
+}
+
+.rowfooter {
+    margin-top: 60px;
+}
+
+.footer {
+    margin-top: 60px;
+    color: white;
+    font-size: 30px;
+}
+
+.titlogin {
+    color: black;
+    font-size: 25px;
+}
+
+.formdestra {
+    height: 48vh;
+    background-color: white;
+    border: 10px solid lightblue;
+    border-left: 10px solid lightblue;
+}
+
+.button {
+    color: white;
+    background-color: rgb(0, 162, 255);
+    padding: 10px;
+    border-radius: 20px;
+}

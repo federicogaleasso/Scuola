@@ -1,0 +1,78 @@
+body{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background:#3E4651;
+  display:flex;
+  justify-content: center;
+  color:white;
+}
+
+:root {
+    --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+    --gray: #34495e;
+    --darkgray: #2c3e50;
+  }
+  
+select {
+appearance: none;
+outline: 0;
+border: 0;
+box-shadow: none;
+flex: 1;
+padding: 0 1em;
+color: #fff;
+background-color: var(--darkgray);
+background-image: none;
+cursor: pointer;
+}
+select::-ms-expand {
+display: none;
+}
+.select {
+position: relative;
+display: flex;
+width: 20em;
+height: 3em;
+border-radius: .25em;
+overflow: hidden;
+}
+.select::after {
+content: '\25BC';
+position: absolute;
+top: 0;
+right: 0;
+padding: 1em;
+background-color: #34495e;
+transition: .25s all ease;
+pointer-events: none;
+}
+.select:hover::after {
+color: #f39c12;
+}
+h1 {
+margin: 0 0 0.25em;
+}
+a {
+font-weight: bold;
+color: var(--gray);
+text-decoration: none;
+padding: .25em;
+border-radius: .25em;
+background: white;
+}
+
+.divMap{
+    margin-top:2vh;
+    justify-content: left;
+    display: flex;
+
+}
+
+.return{
+    display: inline;
+    justify-content: center;
+}
+
+.h1{
+    margin-bottom:5vh;
+    margin-top:2vh;
+}

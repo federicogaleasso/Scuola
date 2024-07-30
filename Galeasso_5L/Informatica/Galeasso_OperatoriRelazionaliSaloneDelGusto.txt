@@ -1,0 +1,74 @@
+Galeasso Federico 5L 1/11/2023 - OP. Relazionali Salone del Gusto
+
+1. Elenco di tutti i nomi dei visitatori maggiorenni
+PROIEZIONE SU (
+    SELEZIONE SU (
+        Visitatore DOVE eta >= 18
+    )
+) DI nome
+
+2. Elenco dei nomi e delle caratteristiche dei prodotti con tipologia “formaggi”
+PROIEZIONE SU (
+    SELEZIONE SU(
+        Prodotti DOVE tipologia == "formaggi"
+    )
+) DI nome, caratteristiche
+
+3. Elenco degli stand con superficie inferiore a 15mq
+SELEZIONE SU(
+	Stand di superficie < 15mq
+)
+
+4. Elenco dei nomi dei minorenni che hanno assaggiato del vino
+PROIEZIONE SU (
+	SELEZIONE SU (
+		JOIN SU (
+			PROIEZIONE SU ( Visitatore ) DI nome, eta,
+			PROIEZIONE SU ( Prodotti ) DI tipologia
+		)
+	) DOVE eta < 18 AND tipologia == "vino"
+) DI nome
+
+5. Elenco aziende delle quali almeno un visitatore ha effettuato più di un assaggio dello stesso prodotto
+PROIEZIONE SU (
+	Selezione SU (
+		PROIEZIONE SU (
+			JOIN SU (
+				Azienda, Prodotti, Visitatore
+			)
+		) DI CodAz, CodProdotto, NumAssaggi, nome
+	) DOVE NumAssaggi > 1
+) DI CodAz
+
+6. Elenco dei nomi e delle età dei visitatori che hanno assaggiato un prodotto caseario presente in uno stand con superficie superiore ai 20 m quadrati
+PROIEZIONE SU (
+	SELEZIONE SU (
+		PROIEZIONE SU (
+			JOIN SU (
+				Stand, Visitatore, Prodottii
+			)
+		) DI Superficie, eta, nome, tipologia
+	) DOVE Superficie > 20mq and tipologia == "caserio"
+) DI nome, eta
+
+7. Elenco delle zone nelle quali ci sono degli stand di aziende che fanno prodotti che non sono mai stati assaggiati
+PROIEZIONE SU (
+	SELEZIONE SU (
+		PROIEZIONE SU (
+			JOIN SU (
+				Stand, Prdotti, Visitarore
+			)
+		) DI Zona, NumAssaggi
+	) DOVE NumAssaggi == 0
+) DI Zona
+
+8. Nome dei visitatori maggiorenni e le caratteristiche dei prodotti che hanno assaggiato
+PROIEZIONE SU (
+	SELEZIONE SU (
+		PROIEZIONE SU (
+			JOIN SU (
+				Visitatore, Prodotti
+			)
+		) DI eta, nome, NumAssaggi, CodProdotto, caratteristiche
+	) DOVE eta > 18 and Podotti.NumAssaggi > 0
+) DI nome, caratteristiche

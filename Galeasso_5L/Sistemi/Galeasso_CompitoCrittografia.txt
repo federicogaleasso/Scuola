@@ -1,0 +1,31 @@
+Numeri esadecimali:
+
+1° px: 011923
+
+2° px: 001f28
+
+3° px: 03293c
+
+4° px: 023f47
+
+-------------
+
+Numeri binari:
+
+1° px = 10001100100100011
+
+2° px = 1111100101000
+
+3° px = 110010100100111100
+
+4° px = 100011111101000111
+
+-------------
+
+Ultimi 2 bit dei 4 pixel invertiti:
+
+00111100
+
+-------------
+
+Conversione da binario ad ASCII, carattere ottenuto: <

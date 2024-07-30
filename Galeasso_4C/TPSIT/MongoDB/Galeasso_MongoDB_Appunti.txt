@@ -1,0 +1,52 @@
+Sono obbligato ad aprire la cartella bin, che si trova in:
+- questo pc
+- TUO DICO
+- programmi
+- mongoDb
+- server
+- 6.0
+- bin
+
+Dobbiamo creare la shell, che non viene creata in automatico. Vado online e digito: mongo db shell download
+
+- link: https://www.mongodb.com/try/download/shell
+
+- copio il contenuto dei file bin all'interno della path: pc/TUO DISCO/programmi/mongoDb/server/6.0/bin
+
+- digito mongosh:
+ci da varie informazioni tra le quali in che indirizzo si trovi il nostro database nella nostra rete locale:
+
+- poi digito show dbs:
+mi visualizza tutti i database, per PASSARE da un database ad un altro utilizzo il comando: "use nomedb"
+
+- db.getName():
+ci dice il nome del db dove siamo
+
+- Per creare un database digito: "use nomedb"
+
+!--- ATTENZIONE PER FARE GLI ESEMPI USERO' utente ma puoi inserire il NOME CHE VUOI TU ---!
+
+- db.getCollectionNames():
+ci da il contenuto del nostro db
+
+- db.utente.insert({quello che vuoi}):
+ci crea una collections all'interno del db che siamo al momento
+ATTENZIONE insert è deprecato, ovverò verrà eliminato
+
+- db.utente.find():
+ci da i contenuti di tutte le nostre collections
+questa funzione può avere pure un parametro tipo:
+db.utente.find({cognome:"rossi"})
+così mi restituirà solo il json dell'elemento che ha il cognome rossi
+
+- db.utente.insertOne({nome: "Paolo", "cognome": "blu", fax: "21231"}):
+puoi inserire un solo elemento
+
+- db.utente.insertMany({quello che vuoi}):
+puoi inserire più elementi
+
+- db.ordini.deleteOne({articolo: "pizza"}):
+elimina il primo articolo di nome pizza
+
+- db.ordini.deleteMany({articolo: "pizza"}):
+elimina tutti gli articoli di nome pizza

@@ -1,0 +1,77 @@
+body{
+    cursor:url(/IMAGE/cursor_icon-icons.com_66530.png), auto;
+}
+.bordi {
+    border: 1px solid black;
+}
+
+.sopra:hover {
+    color: grey !important;
+}
+
+.sfondo {
+    background-image: url(../IMAGE/slider.jpg)!important;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.tit {
+    color: white;
+    font-size: 30px;
+}
+
+.tes {
+    color: white;
+}
+
+.titnero {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.titgia {
+    color: yellow;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.card-bodysopra {
+    background-color: rgb(231, 229, 229);
+    width: 100%;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.titnero2 {
+    color: black;
+    font-size: 30px;
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+.button {
+    background-color: #0474c6;
+    width: 100%;
+    color: white;
+}
+
+.footer {
+    background-color: #4178cb;
+    color: white;
+    padding: 30px;
+}
+
+.footersotto {
+    background-color: #3264b0;
+    color: white;
+    padding: 10px;
+}
+
+#grigio {
+    background-color: rgb(231, 229, 229);
+}

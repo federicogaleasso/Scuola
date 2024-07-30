@@ -1,0 +1,49 @@
+.mt-2{
+    margin-top: 20px;
+}
+
+.mt-1{
+    margin-top: 10px;
+}
+
+.ml-2{
+    margin-left: 20px;
+}
+
+.ml-6{
+    margin-left: 60px;
+}
+
+
+.mr-2{
+    margin-right: 20px;
+}
+
+.w-4{
+    width:60px;
+}
+
+.error{
+    color: red;
+    height: 10px;
+}
+
+th, tr, td{
+    border: 1px black solid;
+    width: 150px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+.flex{
+    display: flex;
+}
